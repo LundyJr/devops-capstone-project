@@ -9,6 +9,7 @@ from flask import Flask
 from service import config
 from service.common import log_handlers
 from flask_talisman import Talisman
+from flask_cors import CORS
 
 # Create Flask application
 app = Flask(__name__)
@@ -39,3 +40,6 @@ app.logger.info("Service initialized!")
 
 # Create and configure the Talisman instance after the Flask app is created
 talisman = Talisman(app)
+
+# Create and configure the CORS instance after the Talisman instance
+CORS(app)
