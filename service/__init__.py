@@ -15,6 +15,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config.from_object(config)
 
+# Create instances of Talisman and CORS classes
+talisman = Talisman(app)
+cors = CORS(app)
+
 # Import the routes After the Flask app is created
 # pylint: disable=wrong-import-position, cyclic-import, wrong-import-order
 from service import routes, models  # noqa: F401 E402
@@ -37,9 +41,3 @@ except Exception as error:  # pylint: disable=broad-except
     sys.exit(4)
 
 app.logger.info("Service initialized!")
-
-# Create and configure the Talisman instance after the Flask app is created
-talisman = Talisman(app)
-
-# Create and configure the CORS instance after the Talisman instance
-CORS(app)
